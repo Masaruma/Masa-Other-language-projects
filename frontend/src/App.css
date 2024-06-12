@@ -1,0 +1,29 @@
+.main-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: start;
+}
+
+.left {
+  width: 20%;
+}
+.right {
+  width: 30%;
+}
+.center {
+  width: 40%;
+}
+
+/* @media (prefers-color-scheme: dark) {
+  :root {
+    --main-text: #ddd;
+    --main-bg: #000;
+  }
+}
+
+body {
+  color: var(--main-text);
+  background-color: var(--main-bg);
+} */
