@@ -52,11 +52,15 @@ const Post = ({ post, setSelected, getPost, selected }) => {
   return (
     <>
       {/* chakra */}
-      <Card maxW="500px" borderColor="brack" borderWidth="1px">
+      <Card
+        borderColor="brack"
+        borderWidth="1px"
+        maxW={{ base: "100%", md: "100%" }}
+      >
         <CardHeader>
           <Flex spacing="4">
             <Flex flex="1" gap="4" alignItems="center" flexWrap="wrap">
-              <Avatar name="Segun Adebayo" src="https://bit.ly/sage-adebayo" />
+              <Avatar name="Segun Adebayo" src={post.avater} />
 
               <Box>
                 <Heading size="sm">{post.username}</Heading>

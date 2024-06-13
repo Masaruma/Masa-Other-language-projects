@@ -34,7 +34,13 @@ const Selected = ({ selected, setSelected, getPost, posts }) => {
   }, []);
   return (
     <>
-      <Box bg="gray" w="100%" p={4} color="white" rounded={5}>
+      <Box
+        bg="gray"
+        maxW={{ base: "100%", md: "100%" }}
+        p={4}
+        color="white"
+        rounded={5}
+      >
         <IconButton
           aria-label="Search database"
           icon={<ArrowBackIcon />}

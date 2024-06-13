@@ -59,7 +59,11 @@ const Posting = ({ getPost }) => {
 
   return (
     <>
-      <Card maxW={"500px"} borderColor="brack" borderWidth="1px">
+      <Card
+        maxW={{ base: "100%", md: "100%" }}
+        borderColor="brack"
+        borderWidth="1px"
+      >
         <Flex flex="1" gap="4" alignItems="center" flexWrap="wrap">
           <Avatar name="Segun Adebayo" src="https://bit.ly/sage-adebayo" />
           <CardBody>

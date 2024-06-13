@@ -14,54 +14,49 @@ import "moment-timezone";
 import { Box, Center, Divider } from "@chakra-ui/react";
 
 const Menu = () => {
-  // myId ログインできたら取得
   const myId = { id: 5, username: "masa" };
   const [posts, setPosts] = useState([]);
-  // !個別ツイート用
   const [selected, setSelected] = useState(null);
-  console.log("selected: ", selected);
 
   const getPost = async () => {
-    const getPost = await axios.get("/api/posts").then((res) =>
-      res.data.map((post) => ({
-        ...post,
-        createdAt: moment(post.createdAt).fromNow(),
-      }))
-    );
-    setPosts(getPost);
-    console.log("getPost: ", getPost);
+    const response = await axios.get("/api/posts");
+    const updatedPosts = response.data.map((post) => ({
+      ...post,
+      createdAt: moment(post.createdAt).fromNow(),
+      avater: `/images/${post.userId}.png`,
+    }));
+    setPosts(updatedPosts);
+    console.log(updatedPosts);
   };
 
   useEffect(() => {
-    // ここでgetPostする
     getPost();
   }, []);
 
   return (
     <>
       <Box w="100%" display="flex" justifyContent="center">
-        <Box w="18%" top={0}>
-          <Left setSelected={setSelected} getPost={getPost} myId={myId}></Left>
+        <Box w={{ base: "100%", md: "20%" }} top={0}>
+          <Left setSelected={setSelected} getPost={getPost} myId={myId} />
         </Box>
-        {/* 個別 tweet切り替え処理 */}
-        <Box w="40%%">
+        <Box w={{ base: "100%", md: "35%" }}>
           {selected ? (
             <Selected
               posts={posts}
               selected={selected}
               setSelected={setSelected}
               getPost={getPost}
-            ></Selected>
+            />
           ) : (
             <>
-              <Box border="1px" maxW={"500px"}>
+              <Box border="1px" maxW={{ base: "100%", md: "100%" }}>
                 <Center height="50px">
                   <div>おすすめ</div>
                   <Divider orientation="vertical" />
                   <div>フォロー中</div>
                 </Center>
               </Box>
-              <Posting getPost={getPost} myId={myId}></Posting>
+              <Posting getPost={getPost} myId={myId} />
               {posts.map((post) => (
                 <Post
                   key={post.id}
@@ -75,8 +70,8 @@ const Menu = () => {
             </>
           )}
         </Box>
-        <Box w="30%">
-          <Right></Right>
+        <Box w={{ base: "100%", md: "36%" }}>
+          <Right />
         </Box>
       </Box>
     </>
