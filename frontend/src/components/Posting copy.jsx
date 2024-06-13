@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 // ui
 import { ChatIcon } from "@chakra-ui/icons";
 // chakra
@@ -10,7 +10,6 @@ import {
   CardFooter,
   Divider,
   Flex,
-  Image,
   Input,
   Textarea,
 } from "@chakra-ui/react";
@@ -18,43 +17,25 @@ import {
 import axios from "axios";
 
 const Posting = ({ getPost }) => {
-  // 画像アップロード、ファイルオブジェクトの格納
-  const [image, setImage] = useState(null);
-  const tempFile = (event) => {
-    const img = event.target.files[0];
-    if (!img) return;
-    setImage(img);
-    console.log(img);
-  };
-
   const ref = useRef();
 
   const posting = async () => {
     // userIdとusernameはログインした時点でフロントに保存。
     if (!ref.current.value) return;
-
-    // formdataへの格納
-    const data = new FormData();
-    data.append("file", image);
-    const user = {
-      userId: 5,
-      createdAt: new Date(),
-      content: ref.current.value,
-      good: 0,
-    };
-
-    data.append(
-      "user",
-      new Blob([JSON.stringify(user)], { type: "application/json" })
-    );
-    console.log("data: ", data);
-
     await axios
-      .post("http://localhost:8080/api/formData", data)
-      .then((res) => console.log("res ", res));
+      .post(`/api/postTable`, {
+        userId: 5,
+        createdAt: new Date(),
+        content: ref.current.value,
+        good: 0,
+      })
+      .then((res) => {
+        console.log("res: ", res);
+      });
+    console.log(ref.current.value);
     ref.current.value = "";
-
     getPost();
+    // load処理
   };
 
   return (
@@ -73,31 +54,6 @@ const Posting = ({ getPost }) => {
             ></Textarea>
           </CardBody>
         </Flex>
-        {image && (
-          <>
-            <Button
-              // colorScheme="teal"
-              size="xs"
-              w={"10px"}
-              ml="auto"
-              onClick={() => {
-                setImage(null);
-              }}
-            >
-              ✖︎
-            </Button>
-            <Image
-              objectFit="cover"
-              src={URL.createObjectURL(image)}
-              alt="Chakra UI"
-              p={5}
-              py={0}
-              border={1}
-              borderColor="black"
-            />
-          </>
-        )}
-
         <Divider orientation="horizontal" color="darkgray" />
         <CardFooter
           justify="space-between"
@@ -108,7 +64,14 @@ const Posting = ({ getPost }) => {
           }}
           sy="100px"
         >
-          <Input type="file" onChange={tempFile} />
+          <Input
+            type="file"
+            onChange={(event) => {
+              const file = event.target.files[0];
+              // ファイルが選択された後の処理を実装する
+              console.log(file);
+            }}
+          />
           <Button flex="1" variant="ghost" leftIcon={<ChatIcon />}>
             Comment
           </Button>

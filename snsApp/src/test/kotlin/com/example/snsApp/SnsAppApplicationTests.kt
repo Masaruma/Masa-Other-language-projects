@@ -47,12 +47,12 @@ class SnsAppApplicationTests(
         assertThat(users[0].username, equalTo("john"))
     }
 
-    //	postTable
     @Test
     fun `postテーブルへのGETリクエストはOKステータスを返す`() {
         val response = restTemplate.getForEntity("http://localhost:$port/api/postTable", String::class.java)
         assertThat(response.statusCode, equalTo(HttpStatus.OK))
     }
+
 
     @Test
     fun `postテーブルへのGETリクエストはpostsオブジェクトのリストを返す`() {
