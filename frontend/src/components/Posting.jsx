@@ -10,6 +10,7 @@ import {
   CardFooter,
   Divider,
   Flex,
+  Input,
   Textarea,
 } from "@chakra-ui/react";
 // axios
@@ -22,7 +23,7 @@ const Posting = ({ getPost }) => {
     // userIdとusernameはログインした時点でフロントに保存。
     if (!ref.current.value) return;
     await axios
-      .post(`http://localhost:8080/postTable`, {
+      .post(`/api/postTable`, {
         userId: 5,
         createdAt: new Date(),
         content: ref.current.value,
@@ -63,6 +64,14 @@ const Posting = ({ getPost }) => {
           }}
           sy="100px"
         >
+          <Input
+            type="file"
+            onChange={(event) => {
+              const file = event.target.files[0];
+              // ファイルが選択された後の処理を実装する
+              console.log(file);
+            }}
+          />
           <Button flex="1" variant="ghost" leftIcon={<ChatIcon />}>
             Comment
           </Button>

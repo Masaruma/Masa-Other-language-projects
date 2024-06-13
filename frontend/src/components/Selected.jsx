@@ -16,7 +16,8 @@ const Selected = ({ selected, setSelected, getPost, posts }) => {
   //   !コメントの取得
   const getComments = async () => {
     const getComment = await axios
-      .get(`http://localhost:8080/comments/${selected.postId}`)
+      //   .get(`http://localhost:8080/comments/${selected.postId}`)
+      .get(`/api/comments/${selected.postId}`)
       .then((res) =>
         res.data.map((post) => ({
           ...post,

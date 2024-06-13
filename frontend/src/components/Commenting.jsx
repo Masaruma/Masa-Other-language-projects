@@ -21,7 +21,8 @@ const Commenting = ({ posts, getPost, getComments, selected, setSelected }) => {
     if (!ref.current.value) return;
     console.log("selected: ", selected);
 
-    await axios.post("http://localhost:8080/comments", {
+    // await axios.post("http://localhost:8080/comments", {
+    await axios.post("/api/comments", {
       postId: selected.postId,
       userId: 5,
       createdAt: new Date(),

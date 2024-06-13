@@ -22,7 +22,8 @@ const Menu = () => {
   console.log("selected: ", selected);
 
   const getPost = async () => {
-    const getPost = await axios.get("http://localhost:8080/posts").then((res) =>
+    // const getPost = await axios.get("http://localhost:8080/posts").then((res) =>
+    const getPost = await axios.get("/api/posts").then((res) =>
       res.data.map((post) => ({
         ...post,
         createdAt: moment(post.createdAt).fromNow(),

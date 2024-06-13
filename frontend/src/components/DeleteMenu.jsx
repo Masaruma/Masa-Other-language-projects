@@ -16,7 +16,8 @@ import { MdOutlineDeleteOutline } from "react-icons/md";
 const DeleteMenu = ({ postId, getPost, setSelected }) => {
   const deletePost = async () => {
     await axios
-      .delete(`http://localhost:8080/postTable/${postId}`)
+      //   .delete(`http://localhost:8080/postTable/${postId}`)
+      .delete(`/api/postTable/${postId}`)
       .then((res) => {
         console.log(res);
       });

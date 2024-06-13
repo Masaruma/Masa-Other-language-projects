@@ -27,7 +27,8 @@ const Post = ({ post, setSelected, getPost, selected }) => {
   // クリックすると拡大表示
 
   const good = async () => {
-    await axios.put(`http://localhost:8080/posts/${post.postId}/good`, {
+    // await axios.put(`http://localhost:8080/posts/${post.postId}/good`, {
+    await axios.put(`/api/posts/${post.postId}/good`, {
       good: post.good + 1,
     });
     await getPost();

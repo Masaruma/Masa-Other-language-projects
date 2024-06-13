@@ -2,7 +2,12 @@
 
 #　概要
 
-バックエンド　 Spring Boot (Kotlin)　を学ぶ一環で SNS アプリを作成しました。機能は以下です
+バックエンド　 Spring Boot (Kotlin)　を学ぶ一環で SNS アプリを作成しました。
+
+- UI の構築は tailwind css + shadn cn , chakraUI, material UI のどれにしようか悩みました。
+  tailwind css +shadn cn はうまく動かなかったので material UI よりも中規模アプリに的した chakra にしました。
+
+- SNS は簡単に作れるのかと思っていましたが、投稿とコメント、いいねの DB が相互に関連していて結構作成するのに苦労しました。X はすごい！と思いました。
 
 1. 記事の投稿
 2. コメントの投稿
@@ -12,7 +17,7 @@
 
 1. サーチ機能
 2. 画像投稿機能
-3.
+3. AI 連携
 
 # 使用技術
 
@@ -46,19 +51,23 @@ inteliJ IDEA CE で snsApp フォルダを開き application.properties を変�
 
 ```
 spring.application.name=snsApp
-spring.datasource.url=jdbc:postgresql://localhost/snsDB
+spring.datasource.url=jdbc:postgresql://localhost/snsdb
 spring.datasource.username=user
 spring.datasource.password=
 spring.datasource.driverClassName=org.postgresql.Driver
 ```
 
-InteliJ 右上のメニューから snsApp[bootRun]を起動するとサーバーが立ち上がる。
+username と password は自分の設定に変更する。
+InteliJ 右上のメニューから snsApp[bootRun]を起動するとサーバーが立ち上がることを確認し、一度停止する.
 
 ####　フロントエンドの設定
-frontend フォルダで必要パッケージのインストールをおこなう。
+frontend フォルダで必要パッケージのインストールをおこなう。その後 build を行う
 
 ```
 npm i
+npm run build
 ```
 
-ビルドする。
+#### アプリの起動
+
+inteliJ IDEA CE で boot run を実行し,http://localhost:8080 にアクセスする。
