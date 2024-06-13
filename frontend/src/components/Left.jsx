@@ -24,6 +24,9 @@ const Left = ({ setSelected, getPost }) => {
   const backHome = () => {
     setSelected(null);
   };
+  const goSearch = () => {
+    setSelected("search");
+  };
   return (
     <Box
       display={"flex"}
@@ -55,7 +58,12 @@ const Left = ({ setSelected, getPost }) => {
       >
         Home
       </Button>
-      <Button flex="1" variant="ghost" leftIcon={<IoMdSearch size={43} />}>
+      <Button
+        flex="1"
+        variant="ghost"
+        leftIcon={<IoMdSearch size={43} />}
+        onClick={goSearch}
+      >
         Search
       </Button>
       <Button
@@ -77,8 +85,6 @@ const Left = ({ setSelected, getPost }) => {
           {/* <ModalBody> */}
           <Posting getPost={getPost}></Posting>
           {/* </ModalBody> */}
-
-
         </ModalContent>
       </Modal>
     </Box>
