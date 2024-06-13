@@ -27,7 +27,8 @@ class AllpostsRowMapper : RowMapper<allPosts> {
             rs.getTimestamp(4),
             rs.getString(5),
             rs.getLong(6),
-            rs.getLong(7)
+            rs.getLong(7),
+            rs.getString(8)
         )
     }
 }//all comment用RowMapper
@@ -63,7 +64,7 @@ class UserRepository(
     //    全ポストとコメント数
     fun fetchAllPosts(): Array<allPosts> {
         val allPosts = jdbcTemplate.query(
-            "SELECT p.id AS post_id, p.user_id, u.username, p.created_at, p.content,p.good, COUNT(c.id) AS comment_amount " +
+            "SELECT p.id AS post_id, p.user_id, u.username, p.created_at, p.content,p.good, COUNT(c.id) AS comment_amount, p.image " +
                     "FROM posts p " +
                     "JOIN users u ON p.user_id = u.id " +
                     "LEFT JOIN comments c ON p.id = c.post_id " +

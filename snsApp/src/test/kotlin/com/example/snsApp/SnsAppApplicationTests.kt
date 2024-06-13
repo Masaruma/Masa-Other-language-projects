@@ -62,7 +62,7 @@ class SnsAppApplicationTests(
 //		println("*****")
 //		println(posts)
         assertThat(posts[0].id, equalTo(1))
-        assertThat(posts[0].content, equalTo("今日は頭が痛い。"))
+        assertThat(posts[0].content, equalTo("週末のキャンプ、雨予報…晴れてくれぇｗ"))
     }
 
 

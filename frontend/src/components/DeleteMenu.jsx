@@ -1,4 +1,3 @@
-import React from "react";
 // axios
 import axios from "axios";
 // chakra
@@ -15,12 +14,9 @@ import { MdOutlineDeleteOutline } from "react-icons/md";
 
 const DeleteMenu = ({ postId, getPost, setSelected }) => {
   const deletePost = async () => {
-    await axios
-      //   .delete(`http://localhost:8080/postTable/${postId}`)
-      .delete(`/api/postTable/${postId}`)
-      .then((res) => {
-        console.log(res);
-      });
+    await axios.delete(`/api/postTable/${postId}`).then((res) => {
+      console.log(res);
+    });
     setSelected(null);
     getPost();
   };

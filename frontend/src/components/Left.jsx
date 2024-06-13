@@ -1,4 +1,3 @@
-import React from "react";
 // chakra
 import {
   Box,
@@ -12,10 +11,11 @@ import {
 } from "@chakra-ui/react";
 
 // icons
-import { TiAdjustBrightness } from "react-icons/ti";
 import { FaHome } from "react-icons/fa";
 import { IoMdSearch } from "react-icons/io";
-import { GiBatWing } from "react-icons/gi";
+
+import { ImHappy } from "react-icons/im";
+import { RiSpeakLine } from "react-icons/ri";
 import Posting from "./Posting";
 const Left = ({ setSelected, getPost }) => {
   // chakra
@@ -31,7 +31,7 @@ const Left = ({ setSelected, getPost }) => {
     <Box
       display={"flex"}
       flexDirection="column"
-      width="7%"
+      maxW={"400px"}
       ml="auto"
       pos="fixed"
       top={0}
@@ -47,7 +47,7 @@ const Left = ({ setSelected, getPost }) => {
       <Button
         flex="1"
         variant="ghost"
-        leftIcon={<TiAdjustBrightness size={43} />}
+        leftIcon={<ImHappy size={55} />}
         onClick={backHome}
       ></Button>
       <Button
@@ -72,7 +72,7 @@ const Left = ({ setSelected, getPost }) => {
         rounded={105}
         colorScheme="blue"
         // variant="ghost"
-        leftIcon={<GiBatWing size={40} />}
+        leftIcon={<RiSpeakLine size={40} />}
         onClick={onOpen}
       >
         ポストする

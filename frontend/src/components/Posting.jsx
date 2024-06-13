@@ -1,6 +1,5 @@
 import React, { useRef, useState } from "react";
 // ui
-import { ChatIcon } from "@chakra-ui/icons";
 // chakra
 import {
   Avatar,
@@ -50,24 +49,25 @@ const Posting = ({ getPost }) => {
     console.log("data: ", data);
 
     await axios
-      .post("http://localhost:8080/api/formData", data)
+      .post("/api/formData", data)
       .then((res) => console.log("res ", res));
     ref.current.value = "";
+    setImage(null);
 
     getPost();
   };
 
   return (
     <>
-      <Card width="100%" borderColor="brack" borderWidth="1px">
+      <Card maxW={"500px"} borderColor="brack" borderWidth="1px">
         <Flex flex="1" gap="4" alignItems="center" flexWrap="wrap">
           <Avatar name="Segun Adebayo" src="https://bit.ly/sage-adebayo" />
           <CardBody>
             {/* ここにツイート */}
-            {/* <Input w="100%" h="100px" placeholder="Basic usage" /> */}
             <Textarea
-              placeholder="Hou are you?"
+              placeholder="いま何しよる？"
               _focusVisible="none"
+              fontSize="1.3rem"
               border="none"
               ref={ref}
             ></Textarea>
@@ -94,6 +94,9 @@ const Posting = ({ getPost }) => {
               py={0}
               border={1}
               borderColor="black"
+              borderRadius={50}
+              maxWidth="100%"
+              maxHeight="300px"
             />
           </>
         )}
@@ -108,10 +111,9 @@ const Posting = ({ getPost }) => {
           }}
           sy="100px"
         >
-          <Input type="file" onChange={tempFile} />
-          <Button flex="1" variant="ghost" leftIcon={<ChatIcon />}>
-            Comment
-          </Button>
+          {/* <Input type="file" onChange={tempFile} rounded={"50"} /> */}
+          <input type="file" onChange={tempFile} />
+
           {/* クリックイベント */}
           <Button colorScheme="blue" onClick={posting}>
             ポストする

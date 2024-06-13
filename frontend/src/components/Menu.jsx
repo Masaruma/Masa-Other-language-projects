@@ -22,14 +22,10 @@ const Menu = () => {
   console.log("selected: ", selected);
 
   const getPost = async () => {
-    // const getPost = await axios.get("http://localhost:8080/posts").then((res) =>
     const getPost = await axios.get("/api/posts").then((res) =>
       res.data.map((post) => ({
         ...post,
         createdAt: moment(post.createdAt).fromNow(),
-        imgURL: `https://picsum.photos/id/${Math.floor(
-          Math.random() * 250
-        )}/90`,
       }))
     );
     setPosts(getPost);
@@ -43,12 +39,12 @@ const Menu = () => {
 
   return (
     <>
-      <Box w="100%" display="flex" justifyContent="space-around">
-        <Box w="20%" top={0}>
+      <Box w="100%" display="flex" justifyContent="center">
+        <Box w="18%" top={0}>
           <Left setSelected={setSelected} getPost={getPost} myId={myId}></Left>
         </Box>
         {/* 個別 tweet切り替え処理 */}
-        <Box w="45%">
+        <Box w="40%%">
           {selected ? (
             <Selected
               posts={posts}
@@ -58,7 +54,7 @@ const Menu = () => {
             ></Selected>
           ) : (
             <>
-              <Box border="1px">
+              <Box border="1px" maxW={"500px"}>
                 <Center height="50px">
                   <div>おすすめ</div>
                   <Divider orientation="vertical" />

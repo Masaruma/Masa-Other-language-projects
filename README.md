@@ -7,17 +7,19 @@
 - UI の構築は tailwind css + shadn cn , chakraUI, material UI のどれにしようか悩みました。
   tailwind css +shadn cn はうまく動かなかったので material UI よりも中規模アプリに的した chakra にしました。
 
-- SNS は簡単に作れるのかと思っていましたが、投稿とコメント、いいねの DB が相互に関連していて結構作成するのに苦労しました。X はすごい！と思いました。
-
+- SNS は簡単に作れるのかと思っていましたが、投稿とコメント、いいねの DB が相互に関連していて結構作成するのに苦労しました。X は機能が豊富ですげえなあとしみじみ思いました。
+## 主要機能
 1. 記事の投稿
-2. コメントの投稿
-3. お気に入り
+2. 画像投稿
+3. コメントの投稿
+4. お気に入り
+※投稿主のIDは現在固定になってしまう。
 
 ## 今後追加したい機能
-
-1. サーチ機能
-2. 画像投稿機能
-3. AI 連携
+1. プロフィール登録
+2. ログイン機能
+3. サーチ機能
+4. AI 連携
 
 # 使用技術
 
@@ -47,7 +49,8 @@ createdb snsdb
 
 #### バックエンドの設定
 
-inteliJ IDEA CE で snsApp フォルダを開き application.properties を変更:
+inteliJ IDEA CE で snsApp フォルダを開き snsApp/src/main/resources/application.properties
+application.properties を作成し下記を記述:
 
 ```
 spring.application.name=snsApp
@@ -55,13 +58,14 @@ spring.datasource.url=jdbc:postgresql://localhost/snsdb
 spring.datasource.username=user
 spring.datasource.password=
 spring.datasource.driverClassName=org.postgresql.Driver
+spring.servlet.multipart.max-file-size=3MB
+spring.servlet.multipart.max-request-size=3MB
 ```
-
 username と password は自分の設定に変更する。
 InteliJ 右上のメニューから snsApp[bootRun]を起動するとサーバーが立ち上がることを確認し、一度停止する.
 
 ####　フロントエンドの設定
-frontend フォルダで必要パッケージのインストールをおこなう。その後 build を行う
+frontend ディレクトリで必要パッケージのインストールをおこなう。その後 build を行う
 
 ```
 npm i

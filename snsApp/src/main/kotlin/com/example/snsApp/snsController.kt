@@ -66,21 +66,18 @@ class SnsController(
             }
 //        base64文字列に変換
             base64FileString = Base64.getEncoder().encodeToString(file.bytes)
-            if ("jpg" == fileEntension) {
+            if ("jpg" == fileEntension || "jpeg" == fileEntension) {
                 base64FileString = "data:image/jpeg;base64,$base64FileString"
             } else if ("png" == fileEntension) {
                 base64FileString = "data:image/png;base64,$base64FileString"
+            } else {
+                base64FileString = "data:image;base64,$base64FileString"
             }
 
             user.image = base64FileString
         }
 
         println(user)
-
-
-//        return repository.save(user)
-
-
         return postRepository.saveImagePost(user)
     }
 

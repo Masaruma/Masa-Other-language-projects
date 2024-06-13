@@ -1,6 +1,5 @@
 import React, { useRef } from "react";
 // ui
-import { ChatIcon } from "@chakra-ui/icons";
 // chakra
 import {
   Avatar,
@@ -15,13 +14,18 @@ import {
 // axios
 import axios from "axios";
 
-const Commenting = ({ posts, getPost, getComments, selected, setSelected }) => {
+const Commenting = ({
+  posts,
+  getPost,
+  getComments,
+  selected,
+  setSelected,
+  postId,
+}) => {
   const ref = useRef();
   const commenting = async () => {
     if (!ref.current.value) return;
-    console.log("selected: ", selected);
 
-    // await axios.post("http://localhost:8080/comments", {
     await axios.post("/api/comments", {
       postId: selected.postId,
       userId: 5,
@@ -43,7 +47,7 @@ const Commenting = ({ posts, getPost, getComments, selected, setSelected }) => {
 
   return (
     <>
-      <Card width="100%" borderColor="brack" borderWidth="1px">
+      <Card width="100%" borderColor="black" borderWidth="1px">
         <Flex flex="1" gap="4" alignItems="center" flexWrap="wrap">
           <Avatar name="Segun Adebayo" src="https://bit.ly/sage-adebayo" />
           <CardBody>
